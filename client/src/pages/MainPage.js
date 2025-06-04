@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function MainPage() {
+
+  const [date, setDate] = useState("");
+  const [sourceCurrency, setSourceCurrency] = useState("");
+  const [targetCurrency, setTargetCurrency] = useState("");
+  const [amountInSourceCurrency, setAmountInSourceCurrency] = useState(0);
+  const [amountInTargetCurrency, setAmountInTargetCurrency] = useState(0);
   return (
     <div>
       <h1 className="lg:mx-32  text-5xl font-black flex items-center justify-normal text-green-500">
@@ -19,16 +25,16 @@ export default function MainPage() {
             <div className="mb-4">
               <label
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                htmlFor="date"
+                htmlFor={date}
               >
                 Date
               </label>
               <input
                 required
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                type="date"
-                name="date"
-                id="date"
+                type="Date"
+                name={date}
+                id={date}
                 placeholder="date.."
               />
             </div>
@@ -36,15 +42,16 @@ export default function MainPage() {
             <div className="mb-4">
               <label
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                htmlFor=""
+                htmlFor={sourceCurrency}
               >
                 Source Curency
               </label>
               <select
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                 type="text"
-                name=""
-                id=""
+                name={sourceCurrency}
+                id={sourceCurrency}
+                value={sourceCurrency}
               >
                 <option value=""> select source currency</option>
               </select>
@@ -53,15 +60,16 @@ export default function MainPage() {
             <div className="mb-4">
               <label
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                htmlFor=""
+                htmlFor={targetCurrency}
               >
                 Target Curency
               </label>
               <select
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                 type="text"
-                name=""
-                id=""
+                name={targetCurrency}
+                id={targetCurrency}
+                value={targetCurrency}
               >
                 <option value=""> select Target currency</option>
               </select>
@@ -70,7 +78,7 @@ export default function MainPage() {
             <div className="mb-4">
               <label
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                htmlFor=""
+                htmlFor={amountInSourceCurrency}
               >
                 Amount in Source Curency
               </label>
@@ -78,8 +86,8 @@ export default function MainPage() {
                 required
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                 type="text"
-                name="text"
-                id=""
+                name={amountInSourceCurrency}
+                id={amountInSourceCurrency}
                 placeholder="Enter amount"
               />
             </div>

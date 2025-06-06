@@ -12,23 +12,22 @@ export default function MainPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(date, sourceCurrency, targetCurrency, amountInSourceCurrency);
-      };
+  };
 
-
-    useEffect (() => {
-      const getCurrencyNames = async () => {
-        try{
-          const responce = await axios.get(
+  useEffect(() => {
+    const getCurrencyNames = async () => {
+      try {
+        const responce = await axios.get(
           "http://localhost:5000/getAllCurrencies"
-          );
-          setCurrencyNames(responce.data);
-        }catch(err){
-          console.log(err);
-        }
-      };
-      getCurrencyNames();
-    }, []);
-    
+        );
+        setCurrencyNames(responce.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getCurrencyNames();
+  }, []);
+
   return (
     <div>
       <h1 className="lg:mx-32  text-5xl font-black flex items-center justify-normal text-green-500">
@@ -77,6 +76,11 @@ export default function MainPage() {
                 value={sourceCurrency}
               >
                 <option value=""> select source currency</option>
+                {Object.keys(currencyNames).map((currency) => (
+                  <option className="p-1" key={currency} value={currency}>
+                    {currencyNames[currency]}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -88,7 +92,7 @@ export default function MainPage() {
                 Target Curency
               </label>
               <select
-                onChange = {(e) => setTargetCurrency(e.target.value)}
+                onChange={(e) => setTargetCurrency(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                 type="text"
                 name={targetCurrency}
@@ -96,6 +100,11 @@ export default function MainPage() {
                 value={targetCurrency}
               >
                 <option value=""> select Target currency</option>
+                {Object.keys(currencyNames).map((currency) => (
+                  <option className="p-1" key={currency} value={currency}>
+                    {currencyNames[currency]}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -107,7 +116,7 @@ export default function MainPage() {
                 Amount in Source Curency
               </label>
               <input
-              onChange={(e) => setAmountInSourceCurrency(e.target.value)}
+                onChange={(e) => setAmountInSourceCurrency(e.target.value)}
                 required
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                 type="text"

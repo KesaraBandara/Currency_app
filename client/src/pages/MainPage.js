@@ -9,9 +9,22 @@ export default function MainPage() {
   const [amountInTargetCurrency, setAmountInTargetCurrency] = useState(0);
   const [currencyNames, setCurrencyNames] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(date, sourceCurrency, targetCurrency, amountInSourceCurrency);
+    try {
+      const responce = await axios.get("http://localhost:5000/convert", {
+        params: {
+          date,
+          sourceCurrency,
+          targetCurrency,
+          amountInSourceCurrency,
+        },
+      });
+
+      setAmountInTargetCurrency(responce.data);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
@@ -136,6 +149,11 @@ export default function MainPage() {
           </form>
         </section>
       </div>
+      <section className="mt-5 lg:mx-60">
+        {amountInSourceCurrency} {currencyNames[sourceCurrency]} is equal to{" "}
+        {""}
+        {amountInTargetCurrency} in {currencyNames[targetCurrency]}
+      </section>
     </div>
   );
 }

@@ -8,6 +8,7 @@ export default function MainPage() {
   const [amountInSourceCurrency, setAmountInSourceCurrency] = useState(0);
   const [amountInTargetCurrency, setAmountInTargetCurrency] = useState(0);
   const [currencyNames, setCurrencyNames] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ export default function MainPage() {
       });
 
       setAmountInTargetCurrency(responce.data);
+      setLoading(false);
     } catch (err) {
       console.error(err);
     }
@@ -149,11 +151,13 @@ export default function MainPage() {
           </form>
         </section>
       </div>
-      <section className="mt-5 lg:mx-60">
+      {!loading ? (
+              <section className="mt-5 lg:mx-60">
         {amountInSourceCurrency} {currencyNames[sourceCurrency]} is equal to{" "}
         {""}
         {amountInTargetCurrency} in {currencyNames[targetCurrency]}
       </section>
+      ) : null}
     </div>
   );
 }
